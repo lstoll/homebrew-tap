@@ -28,21 +28,12 @@ cask "icloud-ssh-agent" do
   # Symlink, not a copy: AMFI kills a Mach-O taken out of the bundle.
   binary "#{appdir}/icloud-ssh-agent.app/Contents/MacOS/icloud-ssh-agent"
 
-  # No uninstall step: the agent (0.1.3+) watches its own app. When an upgrade
-  # replaces it, the agent exits and launchd starts the new version; when an
-  # uninstall removes it, the agent unloads itself. (`uninstall launchctl:`
-  # would run on every upgrade too, and asks for sudo to check for a system
-  # daemon.)
-  #
-  # Transition only: upgrading from <= 0.1.2 runs that version's
-  # `uninstall launchctl:`, which unloads the agent, so reload re-registers it.
-  # It does nothing if `install` was never run. Remove once no install is
-  # older than 0.1.3. Not postflight_steps: its sandbox blocks the mach lookups
-  # SMAppService needs. (brew style and brew itself flag this; expected.)
-  postflight do
-    system_command "#{appdir}/icloud-ssh-agent.app/Contents/MacOS/icloud-ssh-agent",
-                   args: ["reload"]
-  end
+  # No uninstall step: the agent watches its own app. When an upgrade replaces
+  # it, the agent exits and launchd starts the new version; when an uninstall
+  # removes it, the agent unloads itself. (`uninstall launchctl:` would run on
+  # every upgrade too, and asks for sudo to check for a system daemon.)
+  # Installs older than 0.1.3 lose the agent on upgrade; run
+  # `icloud-ssh-agent reload` afterwards.
 
   caveats <<~EOS
     Register and start the agent (one-time):
