@@ -1,8 +1,8 @@
 cask "age-plugin-icloud" do
-  version "0.1.0"
-  sha256 "b44a319d54ae140b520f28b5d2cf82e24370cc78da962f9551e70d6f1183873f"
+  version "0.2.0"
+  sha256 "d042886ed4a4c4e502d6d487d08e346fe0f034e3f14e4091e7d37b352cb67e77"
 
-  url "https://github.com/lstoll/icloud-keys/releases/download/v#{version}/age-plugin-icloud-#{version}-darwin.zip"
+  url "https://github.com/lstoll/icloud-keys/releases/download/age-plugin-icloud-v#{version}/age-plugin-icloud-#{version}-darwin.zip"
   name "age-plugin-icloud"
   desc "Age plugin that stores secrets in iCloud Keychain"
   homepage "https://github.com/lstoll/icloud-keys"
