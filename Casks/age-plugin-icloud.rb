@@ -1,6 +1,6 @@
 cask "age-plugin-icloud" do
-  version "0.2.0"
-  sha256 "d042886ed4a4c4e502d6d487d08e346fe0f034e3f14e4091e7d37b352cb67e77"
+  version "0.2.1"
+  sha256 "d7c50a37397cb1411c2ea1208757b09fe7f49fa976f4689f89470f17931afc79"
 
   url "https://github.com/lstoll/icloud-keys/releases/download/age-plugin-icloud-v#{version}/age-plugin-icloud-#{version}-darwin.zip"
   name "age-plugin-icloud"
