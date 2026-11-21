@@ -28,6 +28,16 @@ cask "icloud-ssh-agent" do
   # Symlink, not a copy: AMFI kills a Mach-O taken out of the bundle.
   binary "#{appdir}/icloud-ssh-agent.app/Contents/MacOS/icloud-ssh-agent"
 
+  # brew also runs the uninstall step on upgrade, which unloads the agent.
+  # reload re-registers the login item if it was registered (an upgrade), so
+  # the new version starts; after a fresh install it does nothing.
+  # Not postflight_steps: its `run` sandbox blocks the mach lookups
+  # SMAppService needs to reach smd. (brew style flags this; that is expected.)
+  postflight do
+    system_command "#{appdir}/icloud-ssh-agent.app/Contents/MacOS/icloud-ssh-agent",
+                   args: ["reload"]
+  end
+
   # Stop the agent; macOS drops the SMAppService login item with the app.
   uninstall launchctl: "li.lds.icloud-ssh-agent"
 
