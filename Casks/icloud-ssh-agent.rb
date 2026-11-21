@@ -1,6 +1,6 @@
 cask "icloud-ssh-agent" do
-  version "0.1.1"
-  sha256 "68ba9b0f54308e1c60c55c317a37ed5fa1ce7a98fc7b2ae3084c578627416a54" # updated by release workflow
+  version "0.1.2"
+  sha256 "9695545c9b535ccc0deb2a33001cb91697d22de99746fc0bdd82c3c62155c37d" # updated by release workflow
 
   url "https://github.com/lstoll/icloud-keys/releases/download/icloud-ssh-agent-v#{version}/icloud-ssh-agent-#{version}-darwin.zip"
   name "icloud-ssh-agent"
